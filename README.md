@@ -25,13 +25,18 @@ better grounded in the source text.
 
 Scored with RAGAS on a 25-question evaluation set, with generation pinned to
 `temperature=0` for reproducibility. Both metrics are reference-free (judged by
-`gpt-4o-mini`). Numbers below are averaged over 2 runs, with the per-run range
-in brackets:
+`gpt-4o-mini`). The two runs below are independent executions of the same
+`python benchmark.py`:
 
-| Metric | Baseline | Improved | Δ (range over 2 runs) |
-|---|---|---|---|
-| Faithfulness | ~0.54 | ~0.65 | **↑ ~0.11** (+0.08 to +0.14) |
-| Answer relevancy | ~0.42 | ~0.51 | **↑ ~0.09** (+0.08 to +0.09) |
+| Metric | Run | Baseline | Improved | Δ |
+|---|---|---|---|---|
+| Faithfulness | 1 | 0.543 | 0.625 | ↑ 0.082 |
+| Faithfulness | 2 | 0.530 | 0.665 | ↑ 0.135 |
+| Answer relevancy | 1 | 0.428 | 0.506 | ↑ 0.078 |
+| Answer relevancy | 2 | 0.412 | 0.504 | ↑ 0.092 |
+
+Reranking improved **both** metrics in **both** runs — faithfulness by
++0.08 to +0.14 and answer relevancy by +0.08 to +0.09.
 
 Reranking improved both grounding and relevance together, consistently across
 runs. The effect only showed up cleanly after widening retrieval (top-40
